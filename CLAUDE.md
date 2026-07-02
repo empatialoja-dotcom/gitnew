@@ -1,11 +1,53 @@
-# MazyOS — Sistema operacional do negócio
+# Gabriel Weiber — MazyOS
+
+> Operação da agência de marketing digital com foco em IA do Gabriel.
+> Aqui ele produz sites, automações e materiais de marketing pros
+> clientes, começando pela Barbearia Barba Negra.
+
+## O que é esse workspace
+
+Workspace de operação da agência do Gabriel — atualmente centrado no
+projeto da Barbearia Barba Negra (site + carrossel automático), primeiro
+grande case do negócio.
+
+**Estrutura de pastas:**
+- `_memoria/` — quem é o Gabriel, como ele fala, o que tá em foco
+- `identidade/` — cores, fontes, logo da Barba Negra
+- `marketing/` — conteúdo, SEO, campanhas (saída das skills)
+- `saidas/` — análises, emails, documentos pontuais
+- `dados/` — arquivos a analisar (CSV, PDF, planilha)
+- `scripts/` — utilitários (gerar imagem, postar, render)
+
+## Quem sou
+
+Sou o Gabriel Weiber. Trabalho sozinho com marketing digital e IA,
+criando sites, automações e conteúdo pra pequenos negócios fecharem
+mais cliente.
+
+## O que produzo
+
+- Sites com agendamento e catálogo de produtos/serviços
+- Gerador de carrossel automático pra redes sociais de clientes
+- Materiais de apresentação/proposta pra fechar contrato
+
+## Tom de voz
+
+Direto, sem rodeio, foco em execução. Evitar jargão de guru
+("alavancar", "sinergia", "vamos juntos!").
+
+## Posicionamento
+
+Ainda em construção — negócio começando agora, sem tese fechada.
+
+## Regras do sistema
+
+- Esse arquivo é editável. Sempre que o Gabriel corrigir algo ou o foco
+  mudar, atualizar aqui ou nos arquivos de `_memoria/` conforme as regras
+  abaixo.
 
 Sua empresa roda em cima desse arquivo. Aqui ficam as regras de operação
 do MazyOS — como o Claude lê o contexto, aprende com correções, mantém
 tudo atualizado e cria skills novas conforme a operação evolui.
-
-Esse arquivo é editável. Quando o `/instalar` rodar, ele complementa o
-final dessa página com as regras específicas do seu negócio.
 
 ---
 

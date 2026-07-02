@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Barba Negra Barbershop — Foz do Iguaçu</title>
+<meta name="description" content="Barba Negra Barbershop: agendamento online, produtos de barba e cabelo, e curso de barbeiro. Foz do Iguaçu." />
+<link rel="icon" href="img/logo.png" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="nav wrap">
+    <a href="#inicio" class="brand">
+      <img src="img/logo-fundo-preto.jpeg" alt="Barba Negra Barbershop" />
+      <span>BARBA NEGRA</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#agendamento">Agendamento</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#curso">Curso</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="#agendamento" class="nav-cta">Agendar horário</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-media">
+    <img src="img/hero.jpg" alt="Barba Negra Barbershop — mais que um corte, um padrão de presença" id="heroImg" />
+  </div>
+  <a href="#sobre" class="scroll-hint" aria-label="Rolar pra baixo"><span></span></a>
+</section>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="split split-reverse">
+      <div class="split-media reveal" data-reveal>
+        <img src="img/local.jpg" alt="Espaço da Barba Negra Barbershop" />
+      </div>
+      <div class="split-text">
+        <span class="index-tag">01 — Sobre</span>
+        <h2 class="reveal" data-reveal>Tradição, técnica e ambiente.</h2>
+        <p class="reveal" data-reveal data-delay="1">Barbearia Barba Negra, em Foz do Iguaçu desde 2020. Ambiente pensado pro cliente relaxar enquanto o time trabalha no detalhe — do corte clássico ao mais moderno.</p>
+        <div class="dif-grid reveal" data-reveal data-delay="2">
+          <div class="dif-card">
+            <h3>Time experiente</h3>
+            <p>Barbeiros especializados em corte moderno e clássico.</p>
+          </div>
+          <div class="dif-card">
+            <h3>Produtos próprios</h3>
+            <p>Linha de cuidado pra manter o resultado em casa.</p>
+          </div>
+          <div class="dif-card">
+            <h3>Curso de barbeiro</h3>
+            <p>Aprenda o ofício com quem faz isso todo dia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="equipe">
+      <span class="index-tag reveal" data-reveal>Nosso time</span>
+      <div class="equipe-grid">
+        <div class="equipe-card reveal" data-reveal>
+          <div class="equipe-foto">
+            <img src="img/equipe-denis.jpg" alt="Denis Wester" />
+          </div>
+          <strong>Denis Wester</strong>
+          <span>Barbeiro</span>
+        </div>
+        <div class="equipe-card reveal" data-reveal data-delay="1">
+          <div class="equipe-foto equipe-foto--iniciais">GD</div>
+          <strong>Guilherme Duarte</strong>
+          <span>Barbeiro</span>
+        </div>
+        <div class="equipe-card reveal" data-reveal data-delay="2">
+          <div class="equipe-foto equipe-foto--iniciais">L</div>
+          <strong>Luiz</strong>
+          <span>Barbeiro</span>
+        </div>
+        <div class="equipe-card reveal" data-reveal data-delay="3">
+          <div class="equipe-foto equipe-foto--iniciais">GW</div>
+          <strong>Gustavo Wandscheer</strong>
+          <span>Barbeiro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="agendamento">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index-tag reveal" data-reveal>02 — Agendamento</span>
+      <h2 class="reveal" data-reveal>Marca teu horário</h2>
+      <p class="reveal" data-reveal data-delay="1">Escolhe o barbeiro, o serviço e o horário — confirma direto no WhatsApp.</p>
+    </div>
+
+    <div class="agendamento-grid">
+      <div class="barbeiros-lista reveal" data-reveal>
+        <div class="barbeiro-card">
+          <div class="barbeiro-avatar"><img src="img/equipe-denis.jpg" alt="Denis Wester" /></div>
+          <div><strong>Denis Wester</strong><span>Barbeiro</span></div>
+        </div>
+        <div class="barbeiro-card">
+          <div class="barbeiro-avatar barbeiro-avatar--iniciais">GD</div>
+          <div><strong>Guilherme Duarte</strong><span>Barbeiro</span></div>
+        </div>
+        <div class="barbeiro-card">
+          <div class="barbeiro-avatar barbeiro-avatar--iniciais">L</div>
+          <div><strong>Luiz</strong><span>Barbeiro</span></div>
+        </div>
+        <div class="barbeiro-card">
+          <div class="barbeiro-avatar barbeiro-avatar--iniciais">GW</div>
+          <div><strong>Gustavo Wandscheer</strong><span>Barbeiro</span></div>
+        </div>
+      </div>
+
+      <form class="agenda-form reveal" data-reveal data-delay="1" id="agendaForm">
+        <div class="field">
+          <label for="nome">Seu nome</label>
+          <input type="text" id="nome" required placeholder="Como você se chama?" />
+        </div>
+        <div class="field">
+          <label for="barbeiro">Barbeiro</label>
+          <select id="barbeiro" required>
+            <option value="">Tanto faz</option>
+            <option>Denis Wester</option>
+            <option>Guilherme Duarte</option>
+            <option>Luiz</option>
+            <option>Gustavo Wandscheer</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="servico">Serviço</label>
+          <select id="servico" required>
+            <option value="">Selecione</option>
+            <option>Corte</option>
+            <option>Barba</option>
+            <option>Corte + Barba</option>
+            <option>Sobrancelha</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="data">Data</label>
+          <input type="date" id="data" required />
+        </div>
+        <div class="field">
+          <label for="hora">Horário</label>
+          <input type="time" id="hora" required />
+        </div>
+        <button type="submit" class="btn btn-primary magnetic">Confirmar via WhatsApp</button>
+        <p class="agenda-nota">Ao confirmar, abre o WhatsApp com sua solicitação já preenchida pro time responder.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="produtos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index-tag reveal" data-reveal>03 — Loja</span>
+      <h2 class="reveal" data-reveal>Produtos Barba Negra</h2>
+      <p class="reveal" data-reveal data-delay="1">Linha própria pra continuar o cuidado em casa.</p>
+    </div>
+    <div class="produtos-grid">
+      <div class="produto-card reveal" data-reveal>
+        <div class="produto-icone">M</div>
+        <h3>Minoxidil</h3>
+        <p>Estímulo de crescimento pra barba e cabelo.</p>
+        <a class="btn btn-outline whats-produto" data-produto="Minoxidil" href="#">Comprar</a>
+      </div>
+      <div class="produto-card reveal" data-reveal data-delay="1">
+        <div class="produto-icone">B</div>
+        <h3>Creme de Barba</h3>
+        <p>Hidratação e maciez pra manter a barba no controle.</p>
+        <a class="btn btn-outline whats-produto" data-produto="Creme de Barba" href="#">Comprar</a>
+      </div>
+      <div class="produto-card reveal" data-reveal data-delay="2">
+        <div class="produto-icone">C</div>
+        <h3>Creme de Cabelo</h3>
+        <p>Cuidado diário pro cabelo depois do corte.</p>
+        <a class="btn btn-outline whats-produto" data-produto="Creme de Cabelo" href="#">Comprar</a>
+      </div>
+      <div class="produto-card reveal" data-reveal data-delay="3">
+        <div class="produto-icone">P</div>
+        <h3>Pomada</h3>
+        <p>Fixação e acabamento pro penteado do dia a dia.</p>
+        <a class="btn btn-outline whats-produto" data-produto="Pomada" href="#">Comprar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="curso" class="curso">
+  <div class="wrap">
+    <div class="curso-inner">
+      <div>
+        <span class="index-tag reveal" data-reveal>04 — Formação</span>
+        <h2 class="reveal" data-reveal>Curso de Barbeiro Barba Negra</h2>
+        <p class="reveal" data-reveal data-delay="1">Aprenda o ofício na prática, com quem corta todo dia. Do básico até o corte de precisão, técnicas de barba e atendimento ao cliente.</p>
+        <ul class="curso-lista reveal" data-reveal data-delay="2">
+          <li>Fundamentos de corte e barba</li>
+          <li>Técnicas de navalha e acabamento</li>
+          <li>Prática em cliente real</li>
+          <li>Certificado de conclusão</li>
+        </ul>
+        <a href="#contato" class="btn btn-primary magnetic reveal" data-reveal data-delay="3">Quero saber mais</a>
+      </div>
+      <div class="curso-card reveal" data-reveal data-delay="1">
+        <span class="eyebrow">Investimento</span>
+        <div class="preco">Sob consulta<small>fala com a gente pra ver turma e valores</small></div>
+        <a href="#contato" class="btn btn-outline" style="width:100%;">Falar com a Barba Negra</a>
+      </div>
+    </div>
+
+    <div class="curso-galeria reveal" data-reveal data-delay="2">
+      <img src="img/curso-alunos-1.jpg" alt="Alunos do curso Barba Negra" />
+      <img src="img/curso-alunos-2.jpg" alt="Alunos praticando corte" />
+    </div>
+
+    <div class="curso-videos">
+      <video class="curso-video" data-src="video/curso-1.mp4" poster="img/curso-alunos-1.jpg" muted loop playsinline preload="none"></video>
+      <video class="curso-video" data-src="video/curso-2.mp4" poster="img/curso-alunos-2.jpg" muted loop playsinline preload="none"></video>
+      <video class="curso-video" data-src="video/curso-3.mp4" poster="img/curso-alunos-1.jpg" muted loop playsinline preload="none"></video>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index-tag reveal" data-reveal>05 — Galeria</span>
+      <h2 class="reveal" data-reveal>Nosso trabalho</h2>
+      <p class="reveal" data-reveal data-delay="1">Fotos direto da barbearia.</p>
+    </div>
+    <div class="galeria-grid" id="galeriaGrid">
+      <!-- Populado por js/main.js a partir de img/galeria/ -->
+    </div>
+  </div>
+</section>
+
+<section id="avaliacoes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="index-tag reveal" data-reveal>06 — Avaliações</span>
+      <h2 class="reveal" data-reveal>Quem já passou pela cadeira</h2>
+    </div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <div id="lightboxContent"></div>
+</div>
+
+<footer id="contato">
+  <div class="wrap">
+    <span class="index-tag">07 — Contato</span>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Barba Negra Barbershop</h3>
+        <p>Foz do Iguaçu, PR</p>
+        <a href="https://wa.me/554599432724" target="_blank" rel="noopener">WhatsApp: +55 45 9943-2724</a>
+        <a href="https://www.instagram.com/barbanegrafozoficial" target="_blank" rel="noopener">@barbanegrafozoficial</a>
+      </div>
+      <div class="footer-col">
+        <h3>Navegação</h3>
+        <a href="#sobre">Sobre</a>
+        <a href="#agendamento">Agendamento</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#curso">Curso</a>
+        <a href="#galeria">Galeria</a>
+      </div>
+      <div class="footer-col">
+        <h3>Horário</h3>
+        <p>Seg a Sáb — horário sob consulta</p>
+        <p>Fechado aos domingos</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="ano"></span> Barba Negra Barbershop. Site por MazyOS.
+    </div>
+  </div>
+</footer>
+
+<a class="whats-float" href="https://wa.me/554599432724" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
