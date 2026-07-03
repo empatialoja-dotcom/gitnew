@@ -135,11 +135,15 @@ section {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal, .equipe-card.reveal-left, .equipe-card.reveal-right { opacity: 1; transform: none; transition: none; }
-  #heroImg, .curso-galeria img { animation: none !important; }
+  #heroImg { animation: none !important; }
   .barbeiro-card, .barbeiro-card.is-focus, .barbeiros-lista.has-focus .barbeiro-card:not(.is-focus) {
     transition: none; transform: none; filter: none;
   }
   form.agenda-form { transition: none; transform: none; }
+  .curso-cta-btn.is-pulsing { animation: none; }
+  .curso-cta-particles { display: none; }
+  .curso-track-fill { transform: none; }
+  .curso-prof-media-inner, .curso-prof-media img { transition: none; }
 }
 
 /* Header — flutua transparente sobre o hero, só ganha fundo ao rolar */
@@ -800,6 +804,42 @@ form.agenda-form.is-shown { opacity: 1; transform: translateX(0) scale(1); }
 /* Curso — reformulado como página de vendas dentro da seção */
 .curso { background: var(--bg-alt); }
 
+/* Layout com a linha de progresso à esquerda do conteúdo */
+.curso-track {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+.curso-track-line {
+  position: sticky;
+  top: 160px;
+  width: 3px;
+  height: 55vh;
+  max-height: 520px;
+  flex-shrink: 0;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.curso-track-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent-hover), var(--accent));
+  transform: scaleY(0);
+  transform-origin: top center;
+  will-change: transform;
+}
+.curso-content {
+  flex: 1;
+  min-width: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.curso-content.cta-focus .curso-hook,
+.curso-content.cta-focus .curso-prof,
+.curso-content.cta-focus .curso-bloco {
+  opacity: 0.5;
+}
+
 .curso-bloco { margin-bottom: 112px; }
 .curso-bloco > .index-tag { display: block; text-align: center; margin-bottom: 40px; }
 
@@ -831,19 +871,34 @@ form.agenda-form.is-shown { opacity: 1; transform: translateX(0) scale(1); }
   margin-bottom: 112px;
 }
 .curso-prof-media {
+  position: relative;
   aspect-ratio: 4/5;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
   background: var(--bg-alt-2);
 }
+.curso-prof-media-inner {
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
 .curso-prof-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.08);
   will-change: transform;
-  transition: transform 0.2s linear;
+}
+.curso-prof-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 rgba(154, 2, 2, 0);
+  transition: box-shadow 0.5s var(--ease);
+  pointer-events: none;
+}
+.curso-prof-media:hover .curso-prof-glow {
+  box-shadow: 0 0 44px rgba(154, 2, 2, 0.22), inset 0 0 30px rgba(154, 2, 2, 0.08);
 }
 .curso-prof-text h3 {
   font-size: clamp(1.6rem, 2.6vw, 2.2rem);
@@ -863,16 +918,31 @@ form.agenda-form.is-shown { opacity: 1; transform: translateX(0) scale(1); }
   gap: 20px;
 }
 .aprende-card {
+  position: relative;
+  overflow: hidden;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 28px 24px;
   transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
+.aprende-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(240, 237, 222, 0.14), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.8s var(--ease);
+  pointer-events: none;
+}
+.aprende-card:hover::before { left: 130%; }
 .aprende-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: var(--accent-hover);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), 0 0 22px rgba(154, 2, 2, 0.25);
 }
 .aprende-num {
   display: block;
@@ -930,12 +1000,16 @@ form.agenda-form.is-shown { opacity: 1; transform: translateX(0) scale(1); }
 
 /* 5. CTA final */
 .curso-cta {
+  position: relative;
   max-width: 640px;
   margin: 0 auto;
   text-align: center;
   padding-top: 64px;
   border-top: 1px solid var(--border);
+  transition: transform 0.6s var(--ease);
 }
+.curso-content.cta-focus .curso-cta { transform: scale(1.025); }
+.curso-cta > * { position: relative; z-index: 1; }
 .curso-cta h3 {
   font-size: clamp(1.7rem, 3vw, 2.4rem);
   margin-bottom: 18px;
@@ -945,6 +1019,28 @@ form.agenda-form.is-shown { opacity: 1; transform: translateX(0) scale(1); }
   font-size: 1.05rem;
   margin-bottom: 32px;
 }
+
+.curso-cta-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.curso-cta-particles span {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-hover);
+  opacity: 0;
+  filter: blur(0.5px);
+}
+
+.curso-cta-btn { position: relative; }
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(154, 2, 2, 0.45); }
+  50% { box-shadow: 0 0 0 14px rgba(154, 2, 2, 0); }
+}
+.curso-cta-btn.is-pulsing { animation: ctaPulse 2.6s ease-in-out infinite; }
 
 /* Galeria */
 .galeria-grid {
@@ -1070,6 +1166,12 @@ footer { padding: 64px 0 32px; }
 /* Responsive */
 @media (max-width: 1024px) and (min-width: 601px) {
   .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Linha de progresso só cabe quando sobra espaço à esquerda do conteúdo */
+@media (max-width: 1300px) {
+  .curso-track-line { display: none; }
+  .curso-track { gap: 0; }
 }
 
 @media (max-width: 860px) {

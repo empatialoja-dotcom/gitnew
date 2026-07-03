@@ -161,22 +161,6 @@ if (listaBarbeiros && cardsBarbeiro.length) {
   });
 }
 
-// Parallax discreto na foto do Denis (seção Curso)
-const cursoProfMedia = document.querySelector(".curso-prof-media");
-const cursoProfImg = document.getElementById("cursoProfImg");
-if (cursoProfMedia && cursoProfImg && !prefersReducedMotion) {
-  window.addEventListener(
-    "scroll",
-    () => {
-      const rect = cursoProfMedia.getBoundingClientRect();
-      const centro = rect.top + rect.height / 2 - window.innerHeight / 2;
-      const deslocamento = Math.max(-22, Math.min(22, centro * -0.05));
-      cursoProfImg.style.transform = `translateY(${deslocamento}px) scale(1.08)`;
-    },
-    { passive: true }
-  );
-}
-
 // Calendário custom do campo Data
 const dataInput = document.getElementById("data");
 const dataDisplay = document.getElementById("dataDisplay");
