@@ -15,7 +15,8 @@ grande case do negócio.
 - `identidade/` — cores, fontes, logo da Barba Negra
 - `marketing/` — conteúdo, SEO, campanhas (saída das skills)
 - `saidas/` — análises, emails, documentos pontuais
-- `dados/` — arquivos a analisar (CSV, PDF, planilha)
+- `site/` — o site da Barba Negra (HTML/CSS/JS, imagens, vídeos) — projeto principal em andamento
+- `dados/` — mídia bruta de clientes pra usar nos projetos (fotos, vídeos — ex: `dados/midia-cliente/`); também serve pra arquivos a analisar (CSV, PDF, planilha)
 - `scripts/` — utilitários (gerar imagem, postar, render)
 
 ## Quem sou

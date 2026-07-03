@@ -20,7 +20,7 @@ Fase inicial do negócio — ainda captando os primeiros clientes.
 - Ainda não fechou — call de apresentação marcada pra sexta-feira, 03/07/2026
 - Instagram atual: [barbanegrafozoficial](https://www.instagram.com/barbanegrafozoficial) — simples, sem muito valor agregado
 - WhatsApp da barbearia: +55 45 9943-2724
-- Barbeiros: Denis Wester, Guilherme Duarte, Luiz, Gustavo Wandscheer
+- Barbeiros: Denis Wester, Guilherme Duarte, Luiz Venâncio, Gustavo Wandscheer
 - Ferramenta de agendamento atual do cliente: visual datado, mal dimensionado, foco excessivo em modos de corte
 - Projeto proposto: site novo com (1) aba de agendamento de horário, (2) aba de produtos (Minoxidil, creme de barba, creme de cabelo, pomadas), (3) aba do curso de barbeiro dele
 - Também vou criar um gerador de carrossel automático pra esse cliente
