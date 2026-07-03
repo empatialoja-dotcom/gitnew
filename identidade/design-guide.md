@@ -8,17 +8,17 @@
 
 ## Cores
 
-Paleta enviada pra Barbearia Barba Negra (as 3 cores abaixo). Papel de
-cada uma é uma sugestão baseada no perfil dark/masculino da marca —
-ajustar se a hierarquia não for essa:
+Paleta em uso no site (site/css/style.css) — perfil dark/masculino:
 
-- **Fundo principal:** `#023048` (azul petróleo escuro)
+- **Fundo principal:** `#000000` (preto). *(A ideia original era azul petróleo `#023048`, mas o site implementado foi pro preto puro — ajustar aqui se isso for reconsiderado.)*
 
-- **Cor de destaque / CTA:** `#770101` (bordô/vermelho escuro)
+- **Cor de destaque / CTA:** `#770101` (bordô/vermelho escuro), hover `#9a0202`
 
-- **Texto principal:** `#f0edde` (off-white / creme)
+- **Texto principal:** `#f0edde` (off-white / creme), texto secundário `#c9c5b4`
 
-- **Fundo alternativo / cards:** *(não definido — usar variação mais clara do azul petróleo até confirmar)*
+- **Fundo alternativo / cards:** `#121212` (bg-alt) e `#1c1c1c` (bg-alt-2, cards elevados)
+
+- **Bordas:** `rgba(240, 237, 222, 0.14)`
 
 - **Cor proibida:** *(não definida)*
 
@@ -45,10 +45,10 @@ mantendo a mesma lógica de uso (calendário + horários + profissional).
 
 ## Elementos-chave
 
-- Bordas: *(não definido)*
-- Border-radius dos cards: *(não definido)*
-- Botões: *(não definido)*
-- Sombras: *(não definido)*
+- Bordas: `1px solid rgba(240, 237, 222, 0.14)` nos cards
+- Border-radius dos cards: `6px`
+- Botões: **primary** fundo `#770101` (hover `#9a0202`), texto creme; **outline** borda `#770101`, fundo transparente
+- Sombras: `0 12px 30px rgba(0, 0, 0, 0.6)` nos cards e elementos elevados
 
 ---
 
@@ -58,12 +58,11 @@ mantendo a mesma lógica de uso (calendário + horários + profissional).
 
 ## Logo
 
-- **Arquivo principal:** `identidade/logo png.png`
-- **Versão fundo branco:** `identidade/Logo fundo branco.jpeg`
-- **Versão fundo preto:** `identidade/Logo fundo preto.jpeg`
-- **Versão fundo vermelho:** `identidade/Logo fundo vermelho.jpeg`
+- **Versão usada no header do site:** `identidade/logo png creme.png` (sem fundo, transparente — recortada e aplicada como `site/img/logo-creme.png`, 96px de altura)
+- **Arquivo principal (fallback/favicon):** `identidade/logo png.png`
+- **Versões fundo branco/preto/vermelho:** `identidade/Logo fundo branco.jpeg`, `Logo fundo preto.jpeg`, `Logo fundo vermelho.jpeg` — existem mas não estão mais em uso no site (a versão sem fundo substituiu a de fundo preto no header)
 - **Onde usar:** header do site, slide final do carrossel (CTA), header de propostas
-- **Tamanho sugerido:** largura entre 120-200px nos HTMLs
+- **Tamanho sugerido:** ~96px de altura no header do site; 120-200px de largura em outros HTMLs
 
 ---
 

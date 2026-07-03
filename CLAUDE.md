@@ -13,9 +13,9 @@ grande case do negócio.
 **Estrutura de pastas:**
 - `_memoria/` — quem é o Gabriel, como ele fala, o que tá em foco
 - `identidade/` — cores, fontes, logo da Barba Negra
+- `site/` — o site da Barba Negra (HTML/CSS/JS, imagens, vídeos) — projeto principal em andamento
 - `marketing/` — conteúdo, SEO, campanhas (saída das skills)
 - `saidas/` — análises, emails, documentos pontuais
-- `site/` — o site da Barba Negra (HTML/CSS/JS, imagens, vídeos) — projeto principal em andamento
 - `dados/` — mídia bruta de clientes pra usar nos projetos (fotos, vídeos — ex: `dados/midia-cliente/`); também serve pra arquivos a analisar (CSV, PDF, planilha)
 - `scripts/` — utilitários (gerar imagem, postar, render)
 
