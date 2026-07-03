@@ -13,13 +13,12 @@
 <header id="siteHeader">
   <nav class="nav wrap">
     <a href="#inicio" class="brand">
-      <img src="img/logo-fundo-preto.jpeg" alt="Barba Negra Barbershop" />
-      <span>BARBA NEGRA</span>
+      <img src="img/logo-creme.png" alt="Barba Negra Barbershop" />
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#agendamento">Agendamento</a></li>
-      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="produtos.html">Produtos</a></li>
       <li><a href="#curso">Curso</a></li>
       <li><a href="#galeria">Galeria</a></li>
       <li><a href="#contato">Contato</a></li>
@@ -32,6 +31,12 @@
 <section class="hero" id="inicio">
   <div class="hero-media">
     <img src="img/hero.jpg" alt="Barba Negra Barbershop — mais que um corte, um padrão de presença" id="heroImg" />
+  </div>
+  <div class="hero-content wrap">
+    <span class="eyebrow">Mais que um corte</span>
+    <h1 class="hero-title">Um padrão<br />de presença</h1>
+    <p class="hero-sub">Estilo, Confiança, Atitude<br />Do jeito que tem que ser.</p>
+    <a href="#agendamento" class="hero-cta">Agende seu horário <span aria-hidden="true">→</span></a>
   </div>
   <a href="#sobre" class="scroll-hint" aria-label="Rolar pra baixo"><span></span></a>
 </section>
@@ -66,25 +71,31 @@
     <div class="equipe">
       <span class="index-tag reveal" data-reveal>Nosso time</span>
       <div class="equipe-grid">
-        <div class="equipe-card reveal" data-reveal>
+        <div class="equipe-card reveal-right" data-reveal>
           <div class="equipe-foto">
             <img src="img/equipe-denis.jpg" alt="Denis Wester" />
           </div>
           <strong>Denis Wester</strong>
           <span>Barbeiro</span>
         </div>
-        <div class="equipe-card reveal" data-reveal data-delay="1">
-          <div class="equipe-foto equipe-foto--iniciais">GD</div>
+        <div class="equipe-card reveal-right" data-reveal data-delay="1">
+          <div class="equipe-foto">
+            <img src="img/equipe-guilherme.jpg" alt="Guilherme Duarte" />
+          </div>
           <strong>Guilherme Duarte</strong>
           <span>Barbeiro</span>
         </div>
-        <div class="equipe-card reveal" data-reveal data-delay="2">
-          <div class="equipe-foto equipe-foto--iniciais">L</div>
-          <strong>Luiz</strong>
+        <div class="equipe-card reveal-left" data-reveal data-delay="2">
+          <div class="equipe-foto">
+            <img src="img/equipe-luiz.jpg" alt="Luiz Venâncio" />
+          </div>
+          <strong>Luiz Venâncio</strong>
           <span>Barbeiro</span>
         </div>
-        <div class="equipe-card reveal" data-reveal data-delay="3">
-          <div class="equipe-foto equipe-foto--iniciais">GW</div>
+        <div class="equipe-card reveal-left" data-reveal data-delay="3">
+          <div class="equipe-foto">
+            <img src="img/equipe-gustavo.jpg" alt="Gustavo Wandscheer" />
+          </div>
           <strong>Gustavo Wandscheer</strong>
           <span>Barbeiro</span>
         </div>
@@ -97,7 +108,7 @@
   <div class="wrap">
     <div class="section-head">
       <span class="index-tag reveal" data-reveal>02 — Agendamento</span>
-      <h2 class="reveal" data-reveal>Marca teu horário</h2>
+      <h2 class="reveal" data-reveal>Marque seu horário</h2>
       <p class="reveal" data-reveal data-delay="1">Escolhe o barbeiro, o serviço e o horário — confirma direto no WhatsApp.</p>
     </div>
 
@@ -108,34 +119,25 @@
           <div><strong>Denis Wester</strong><span>Barbeiro</span></div>
         </div>
         <div class="barbeiro-card">
-          <div class="barbeiro-avatar barbeiro-avatar--iniciais">GD</div>
+          <div class="barbeiro-avatar"><img src="img/equipe-guilherme.jpg" alt="Guilherme Duarte" /></div>
           <div><strong>Guilherme Duarte</strong><span>Barbeiro</span></div>
         </div>
         <div class="barbeiro-card">
-          <div class="barbeiro-avatar barbeiro-avatar--iniciais">L</div>
-          <div><strong>Luiz</strong><span>Barbeiro</span></div>
+          <div class="barbeiro-avatar"><img src="img/equipe-luiz.jpg" alt="Luiz Venâncio" /></div>
+          <div><strong>Luiz Venâncio</strong><span>Barbeiro</span></div>
         </div>
         <div class="barbeiro-card">
-          <div class="barbeiro-avatar barbeiro-avatar--iniciais">GW</div>
+          <div class="barbeiro-avatar"><img src="img/equipe-gustavo.jpg" alt="Gustavo Wandscheer" /></div>
           <div><strong>Gustavo Wandscheer</strong><span>Barbeiro</span></div>
         </div>
       </div>
 
-      <form class="agenda-form reveal" data-reveal data-delay="1" id="agendaForm">
+      <form class="agenda-form" id="agendaForm">
         <div class="field">
           <label for="nome">Seu nome</label>
           <input type="text" id="nome" required placeholder="Como você se chama?" />
         </div>
-        <div class="field">
-          <label for="barbeiro">Barbeiro</label>
-          <select id="barbeiro" required>
-            <option value="">Tanto faz</option>
-            <option>Denis Wester</option>
-            <option>Guilherme Duarte</option>
-            <option>Luiz</option>
-            <option>Gustavo Wandscheer</option>
-          </select>
-        </div>
+        <input type="hidden" id="barbeiro" />
         <div class="field">
           <label for="servico">Serviço</label>
           <select id="servico" required>
@@ -144,11 +146,32 @@
             <option>Barba</option>
             <option>Corte + Barba</option>
             <option>Sobrancelha</option>
+            <option>Cabelo, Barba e Sobrancelha</option>
           </select>
         </div>
         <div class="field">
-          <label for="data">Data</label>
-          <input type="date" id="data" required />
+          <label for="dataDisplay">Data</label>
+          <div class="date-picker" id="datePicker">
+            <button type="button" class="date-picker-input" id="dataDisplay" aria-haspopup="dialog" aria-expanded="false">
+              <span id="dataLabel" class="placeholder">Selecione o dia</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M3 10h18M8 3v4M16 3v4" />
+              </svg>
+            </button>
+            <input type="hidden" id="data" name="data" />
+            <div class="calendar" id="calendar">
+              <div class="calendar-head">
+                <button type="button" class="calendar-nav" id="calPrev" aria-label="Mês anterior">‹</button>
+                <span id="calMonthLabel"></span>
+                <button type="button" class="calendar-nav" id="calNext" aria-label="Próximo mês">›</button>
+              </div>
+              <div class="calendar-weekdays">
+                <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+              </div>
+              <div class="calendar-days" id="calDays"></div>
+            </div>
+          </div>
         </div>
         <div class="field">
           <label for="hora">Horário</label>
@@ -161,47 +184,11 @@
   </div>
 </section>
 
-<section id="produtos">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="index-tag reveal" data-reveal>03 — Loja</span>
-      <h2 class="reveal" data-reveal>Produtos Barba Negra</h2>
-      <p class="reveal" data-reveal data-delay="1">Linha própria pra continuar o cuidado em casa.</p>
-    </div>
-    <div class="produtos-grid">
-      <div class="produto-card reveal" data-reveal>
-        <div class="produto-icone">M</div>
-        <h3>Minoxidil</h3>
-        <p>Estímulo de crescimento pra barba e cabelo.</p>
-        <a class="btn btn-outline whats-produto" data-produto="Minoxidil" href="#">Comprar</a>
-      </div>
-      <div class="produto-card reveal" data-reveal data-delay="1">
-        <div class="produto-icone">B</div>
-        <h3>Creme de Barba</h3>
-        <p>Hidratação e maciez pra manter a barba no controle.</p>
-        <a class="btn btn-outline whats-produto" data-produto="Creme de Barba" href="#">Comprar</a>
-      </div>
-      <div class="produto-card reveal" data-reveal data-delay="2">
-        <div class="produto-icone">C</div>
-        <h3>Creme de Cabelo</h3>
-        <p>Cuidado diário pro cabelo depois do corte.</p>
-        <a class="btn btn-outline whats-produto" data-produto="Creme de Cabelo" href="#">Comprar</a>
-      </div>
-      <div class="produto-card reveal" data-reveal data-delay="3">
-        <div class="produto-icone">P</div>
-        <h3>Pomada</h3>
-        <p>Fixação e acabamento pro penteado do dia a dia.</p>
-        <a class="btn btn-outline whats-produto" data-produto="Pomada" href="#">Comprar</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="curso" class="curso">
   <div class="wrap">
     <div class="curso-inner">
       <div>
-        <span class="index-tag reveal" data-reveal>04 — Formação</span>
+        <span class="index-tag reveal" data-reveal>03 — Formação</span>
         <h2 class="reveal" data-reveal>Curso de Barbeiro Barba Negra</h2>
         <p class="reveal" data-reveal data-delay="1">Aprenda o ofício na prática, com quem corta todo dia. Do básico até o corte de precisão, técnicas de barba e atendimento ao cliente.</p>
         <ul class="curso-lista reveal" data-reveal data-delay="2">
@@ -235,7 +222,7 @@
 <section id="galeria">
   <div class="wrap">
     <div class="section-head">
-      <span class="index-tag reveal" data-reveal>05 — Galeria</span>
+      <span class="index-tag reveal" data-reveal>04 — Galeria</span>
       <h2 class="reveal" data-reveal>Nosso trabalho</h2>
       <p class="reveal" data-reveal data-delay="1">Fotos direto da barbearia.</p>
     </div>
@@ -248,7 +235,7 @@
 <section id="avaliacoes">
   <div class="wrap">
     <div class="section-head">
-      <span class="index-tag reveal" data-reveal>06 — Avaliações</span>
+      <span class="index-tag reveal" data-reveal>05 — Avaliações</span>
       <h2 class="reveal" data-reveal>Quem já passou pela cadeira</h2>
     </div>
   </div>
@@ -262,9 +249,18 @@
   <div id="lightboxContent"></div>
 </div>
 
+<section class="cta-produtos">
+  <div class="wrap cta-produtos-inner">
+    <span class="eyebrow reveal" data-reveal>Loja Barba Negra</span>
+    <h2 class="reveal" data-reveal data-delay="1">Leve a experiência da barbearia para casa.</h2>
+    <p class="reveal" data-reveal data-delay="2">Conheça os produtos utilizados no dia a dia da barbearia e escolha os cuidados ideais para manter seu estilo.</p>
+    <a href="produtos.html" class="btn btn-primary magnetic reveal" data-reveal data-delay="3">Ver Produtos</a>
+  </div>
+</section>
+
 <footer id="contato">
   <div class="wrap">
-    <span class="index-tag">07 — Contato</span>
+    <span class="index-tag">06 — Contato</span>
     <div class="footer-grid">
       <div class="footer-col">
         <h3>Barba Negra Barbershop</h3>
@@ -276,7 +272,7 @@
         <h3>Navegação</h3>
         <a href="#sobre">Sobre</a>
         <a href="#agendamento">Agendamento</a>
-        <a href="#produtos">Produtos</a>
+        <a href="produtos.html">Produtos</a>
         <a href="#curso">Curso</a>
         <a href="#galeria">Galeria</a>
       </div>
@@ -292,7 +288,12 @@
   </div>
 </footer>
 
-<a class="whats-float" href="https://wa.me/554599432724" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">💬</a>
+<a class="whats-float" href="https://wa.me/554599432724" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
+    <path d="M16.004 3C9.377 3 4 8.373 4 15c0 2.34.653 4.53 1.785 6.393L4 29l7.8-1.75A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3Zm0 21.75a9.7 9.7 0 0 1-4.95-1.354l-.355-.21-4.63 1.04 1.02-4.51-.232-.37A9.7 9.7 0 0 1 5.25 15c0-5.93 4.824-10.75 10.754-10.75S26.75 9.07 26.75 15 21.934 24.75 16.004 24.75Z"/>
+    <path d="M21.62 17.47c-.303-.152-1.79-.883-2.067-.984-.278-.101-.48-.152-.682.152-.202.303-.784.984-.96 1.187-.177.202-.354.227-.657.075-.303-.152-1.279-.472-2.436-1.505-.9-.803-1.508-1.795-1.685-2.098-.177-.303-.019-.467.133-.618.137-.136.303-.354.454-.53.152-.177.202-.304.303-.506.101-.202.05-.38-.025-.531-.076-.152-.682-1.645-.935-2.253-.246-.591-.497-.511-.682-.52l-.581-.01c-.202 0-.53.076-.808.38-.278.303-1.06 1.036-1.06 2.53 0 1.492 1.086 2.934 1.238 3.137.152.202 2.138 3.264 5.182 4.577.724.313 1.288.5 1.728.64.726.231 1.386.198 1.908.12.582-.087 1.79-.732 2.043-1.44.253-.708.253-1.314.177-1.44-.076-.126-.278-.202-.581-.354Z"/>
+  </svg>
+</a>
 
 <script src="js/main.js"></script>
 </body>
