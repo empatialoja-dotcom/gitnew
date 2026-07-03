@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Produtos — Barba Negra Barbershop</title>
-<meta name="description" content="Produtos Barba Negra: minoxidil, creme de barba, creme de cabelo e pomada. Leve a experiência da barbearia pra casa." />
+<title>Cancelar Agendamento — Barba Negra Barbershop</title>
+<meta name="description" content="Cancele seu agendamento na Barba Negra informando o telefone usado na marcação." />
 <link rel="icon" href="img/logo.png" />
 <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -18,7 +18,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#sobre">Sobre</a></li>
       <li><a href="index.html#agendamento">Agendamento</a></li>
-      <li><a href="produtos.html" aria-current="page">Produtos</a></li>
+      <li><a href="produtos.html">Produtos</a></li>
       <li><a href="index.html#curso">Curso</a></li>
       <li><a href="index.html#galeria">Galeria</a></li>
       <li><a href="index.html#contato">Contato</a></li>
@@ -30,15 +30,40 @@
 
 <section class="produtos-hero">
   <div class="wrap">
-    <span class="index-tag reveal" data-reveal>Loja Barba Negra</span>
-    <h1 class="reveal" data-reveal data-delay="1">Produtos Barba Negra</h1>
-    <p class="reveal" data-reveal data-delay="2">Linha própria pra continuar o cuidado em casa, com o mesmo padrão da barbearia.</p>
+    <span class="index-tag reveal" data-reveal>Cancelar agendamento</span>
+    <h1 class="reveal" data-reveal data-delay="1">Cancelar agendamento</h1>
+    <p class="reveal" data-reveal data-delay="2">Informe o telefone usado na marcação — sem login, sem código.</p>
   </div>
 </section>
 
-<section id="produtos-lista">
+<section id="cancelar-conteudo">
   <div class="wrap">
-    <div class="produtos-grid" id="produtosGrid"></div>
+    <div class="cancelar-card">
+
+      <form id="buscaForm" class="cancelar-busca">
+        <div class="field">
+          <label for="telefoneBusca">Seu telefone</label>
+          <input type="tel" id="telefoneBusca" required placeholder="(45) 99999-9999" />
+        </div>
+        <p class="agenda-erro" id="buscaErro"></p>
+        <button type="submit" class="btn btn-primary magnetic" id="buscaBtn">Buscar agendamento</button>
+      </form>
+
+      <div class="cancelar-resultado" id="cancelarResultado">
+        <h3>Encontramos seu agendamento</h3>
+        <dl class="cancelar-detalhes" id="cancelarDetalhes"></dl>
+        <div class="cancelar-acoes">
+          <button type="button" class="btn btn-outline" id="manterBtn">Manter agendamento</button>
+          <button type="button" class="btn btn-primary" id="cancelarBtn">Cancelar agendamento</button>
+        </div>
+      </div>
+
+      <div class="cancelar-sucesso" id="cancelarSucesso">
+        <h3>Agendamento cancelado</h3>
+        <p>Seu horário foi liberado. Quer marcar outro? <a href="index.html#agendamento">Clique aqui</a>.</p>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -79,6 +104,8 @@
   </svg>
 </a>
 
-<script src="js/produtos.js"></script>
+<script src="js/vendor/supabase.min.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/cancelar.js"></script>
 </body>
 </html>

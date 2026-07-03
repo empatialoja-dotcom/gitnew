@@ -11,9 +11,10 @@ conseguir o primeiro grande case.
 
 ## Prioridade principal
 
-Fechar a Barbearia Barba Negra como cliente: montar o site (agendamento +
-produtos + curso) e ter algo pra apresentar na call de sexta-feira,
-03/07/2026.
+Fechar a Barbearia Barba Negra como cliente. O site (agendamento +
+produtos + curso, com a seção do curso reformulada como experiência
+interativa de vendas) já está pronto e publicado — falta só a call de
+sexta-feira, 03/07/2026, decidir o fechamento.
 
 ## O que pode esperar
 

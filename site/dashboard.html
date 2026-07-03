@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Painel do Barbeiro — Barba Negra Barbershop</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="img/logo.png" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="nav wrap">
+    <a href="index.html#inicio" class="brand">
+      <img src="img/logo-creme.png" alt="Barba Negra Barbershop" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#agendamento">Agendamento</a></li>
+      <li><a href="produtos.html">Produtos</a></li>
+      <li><a href="index.html#curso">Curso</a></li>
+      <li><a href="index.html#galeria">Galeria</a></li>
+      <li><a href="index.html#contato">Contato</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+  </nav>
+</header>
+
+<section class="produtos-hero">
+  <div class="wrap">
+    <span class="index-tag reveal" data-reveal>Painel</span>
+    <h1 class="reveal" data-reveal data-delay="1">Painel do barbeiro</h1>
+    <p class="reveal" data-reveal data-delay="2" id="dashSaudacao">Entre com seu usuário pra ver sua agenda.</p>
+  </div>
+</section>
+
+<section id="dash-conteudo">
+  <div class="wrap">
+
+    <form id="loginForm" class="dash-login">
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" required placeholder="seu@email.com" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="loginSenha">Senha</label>
+        <input type="password" id="loginSenha" required placeholder="Sua senha" autocomplete="current-password" />
+      </div>
+      <p class="agenda-erro" id="loginErro"></p>
+      <button type="submit" class="btn btn-primary" id="loginBtn">Entrar</button>
+    </form>
+
+    <div class="dash-painel" id="dashPainel">
+      <div class="dash-topo">
+        <div class="dash-abas">
+          <button type="button" class="dash-aba is-focus" data-view="hoje">Hoje</button>
+          <button type="button" class="dash-aba" data-view="semana">Semana</button>
+          <button type="button" class="dash-aba" data-view="bloqueios">Bloqueios</button>
+        </div>
+        <button type="button" class="btn btn-outline" id="logoutBtn">Sair</button>
+      </div>
+
+      <div class="dash-view" id="viewHoje">
+        <div class="dash-lista" id="listaHoje"></div>
+      </div>
+
+      <div class="dash-view is-hidden" id="viewSemana">
+        <div class="dash-lista" id="listaSemana"></div>
+      </div>
+
+      <div class="dash-view is-hidden" id="viewBloqueios">
+        <form class="dash-bloqueio-form" id="bloqueioForm">
+          <div class="field">
+            <label for="bloqData">Data</label>
+            <input type="date" id="bloqData" required />
+          </div>
+          <div class="field">
+            <label for="bloqInicio">Início</label>
+            <input type="time" id="bloqInicio" required step="900" />
+          </div>
+          <div class="field">
+            <label for="bloqFim">Fim</label>
+            <input type="time" id="bloqFim" required step="900" />
+          </div>
+          <div class="field">
+            <label for="bloqMotivo">Motivo</label>
+            <input type="text" id="bloqMotivo" placeholder="Almoço, folga..." />
+          </div>
+          <button type="submit" class="btn btn-outline">Bloquear horário</button>
+        </form>
+        <div class="dash-lista" id="listaBloqueios"></div>
+      </div>
+    </div>
+
+    <div class="dash-editar" id="dashEditar">
+      <div class="dash-editar-card">
+        <h3>Editar agendamento</h3>
+        <div class="field">
+          <label>Serviço</label>
+          <div class="servico-grid" id="editServicoGrid"></div>
+        </div>
+        <div class="field">
+          <label for="editData">Data</label>
+          <input type="date" id="editData" />
+        </div>
+        <div class="field">
+          <label>Horário</label>
+          <div class="horario-grid" id="editHorarioGrid"></div>
+        </div>
+        <p class="agenda-erro" id="editErro"></p>
+        <div class="dash-editar-acoes">
+          <button type="button" class="btn btn-outline" id="editFecharBtn">Fechar</button>
+          <button type="button" class="btn btn-primary" id="editSalvarBtn">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap">
+    <span class="index-tag">Contato</span>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Barba Negra Barbershop</h3>
+        <p>Foz do Iguaçu, PR</p>
+        <a href="https://wa.me/554599432724" target="_blank" rel="noopener">WhatsApp: +55 45 9943-2724</a>
+        <a href="https://www.instagram.com/barbanegrafozoficial" target="_blank" rel="noopener">@barbanegrafozoficial</a>
+      </div>
+      <div class="footer-col">
+        <h3>Navegação</h3>
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#agendamento">Agendamento</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="index.html#curso">Curso</a>
+        <a href="index.html#galeria">Galeria</a>
+      </div>
+      <div class="footer-col">
+        <h3>Horário</h3>
+        <p>Seg a Sáb, 08h às 20h</p>
+        <p>Fechado aos domingos</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="ano"></span> Barba Negra Barbershop. Site por MazyOS.
+    </div>
+  </div>
+</footer>
+
+<script src="js/vendor/supabase.min.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -109,24 +109,24 @@
     <div class="section-head">
       <span class="index-tag reveal" data-reveal>02 — Agendamento</span>
       <h2 class="reveal" data-reveal>Marque seu horário</h2>
-      <p class="reveal" data-reveal data-delay="1">Escolhe o barbeiro, o serviço e o horário — confirma direto no WhatsApp.</p>
+      <p class="reveal" data-reveal data-delay="1">Escolhe o barbeiro, o serviço e o horário — tudo direto por aqui, sem precisar sair do site.</p>
     </div>
 
     <div class="agendamento-grid">
       <div class="barbeiros-lista reveal" data-reveal>
-        <div class="barbeiro-card">
+        <div class="barbeiro-card" data-slug="denis">
           <div class="barbeiro-avatar"><img src="img/equipe-denis.jpg" alt="Denis Wester" /></div>
           <div><strong>Denis Wester</strong><span>Barbeiro</span></div>
         </div>
-        <div class="barbeiro-card">
+        <div class="barbeiro-card" data-slug="guilherme">
           <div class="barbeiro-avatar"><img src="img/equipe-guilherme.jpg" alt="Guilherme Duarte" /></div>
           <div><strong>Guilherme Duarte</strong><span>Barbeiro</span></div>
         </div>
-        <div class="barbeiro-card">
+        <div class="barbeiro-card" data-slug="luiz">
           <div class="barbeiro-avatar"><img src="img/equipe-luiz.jpg" alt="Luiz Venâncio" /></div>
           <div><strong>Luiz Venâncio</strong><span>Barbeiro</span></div>
         </div>
-        <div class="barbeiro-card">
+        <div class="barbeiro-card" data-slug="gustavo">
           <div class="barbeiro-avatar"><img src="img/equipe-gustavo.jpg" alt="Gustavo Wandscheer" /></div>
           <div><strong>Gustavo Wandscheer</strong><span>Barbeiro</span></div>
         </div>
@@ -134,21 +134,10 @@
 
       <form class="agenda-form" id="agendaForm">
         <div class="field">
-          <label for="nome">Seu nome</label>
-          <input type="text" id="nome" required placeholder="Como você se chama?" />
+          <label>Serviço</label>
+          <div class="servico-grid" id="servicoGrid"><!-- populado por js/agendamento.js --></div>
         </div>
-        <input type="hidden" id="barbeiro" />
-        <div class="field">
-          <label for="servico">Serviço</label>
-          <select id="servico" required>
-            <option value="">Selecione</option>
-            <option>Corte</option>
-            <option>Barba</option>
-            <option>Corte + Barba</option>
-            <option>Sobrancelha</option>
-            <option>Cabelo, Barba e Sobrancelha</option>
-          </select>
-        </div>
+
         <div class="field">
           <label for="dataDisplay">Data</label>
           <div class="date-picker" id="datePicker">
@@ -159,7 +148,6 @@
                 <path d="M3 10h18M8 3v4M16 3v4" />
               </svg>
             </button>
-            <input type="hidden" id="data" name="data" />
             <div class="calendar" id="calendar">
               <div class="calendar-head">
                 <button type="button" class="calendar-nav" id="calPrev" aria-label="Mês anterior">‹</button>
@@ -173,13 +161,33 @@
             </div>
           </div>
         </div>
+
         <div class="field">
-          <label for="hora">Horário</label>
-          <input type="time" id="hora" required />
+          <label>Horário</label>
+          <div class="horario-grid" id="horarioGrid">
+            <p class="horario-msg">Escolha o barbeiro, o serviço e a data pra ver os horários livres.</p>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary magnetic">Confirmar via WhatsApp</button>
-        <p class="agenda-nota">Ao confirmar, abre o WhatsApp com sua solicitação já preenchida pro time responder.</p>
+
+        <div class="field">
+          <label for="nome">Seu nome</label>
+          <input type="text" id="nome" required placeholder="Como você se chama?" />
+        </div>
+        <div class="field">
+          <label for="telefone">Seu telefone</label>
+          <input type="tel" id="telefone" required placeholder="(45) 99999-9999" />
+        </div>
+
+        <p class="agenda-erro" id="agendaErro"></p>
+        <button type="submit" class="btn btn-primary magnetic" id="agendaSubmitBtn">Confirmar agendamento</button>
+        <p class="agenda-nota">O horário fica reservado assim que você confirmar.</p>
       </form>
+
+      <div class="agenda-sucesso" id="agendaSucesso">
+        <h3>Agendamento confirmado!</h3>
+        <p id="agendaResumo"></p>
+        <p class="agenda-sucesso-nota">Errou o horário? <a href="cancelar.html">Cancele aqui</a>.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -271,10 +279,12 @@
     <div class="section-head">
       <span class="index-tag reveal" data-reveal>04 — Galeria</span>
       <h2 class="reveal" data-reveal>Nosso trabalho</h2>
-      <p class="reveal" data-reveal data-delay="1">Fotos direto da barbearia.</p>
+      <p class="reveal" data-reveal data-delay="2">Fotos direto da barbearia.</p>
     </div>
+  </div>
+  <div class="galeria-wrap">
     <div class="galeria-grid" id="galeriaGrid">
-      <!-- Populado por js/main.js a partir de img/galeria/ -->
+      <!-- Populado por js/galeria.js a partir de img/galeria/ -->
     </div>
   </div>
 </section>
@@ -292,8 +302,12 @@
 </section>
 
 <div class="lightbox" id="lightbox">
-  <span class="lightbox-close" id="lightboxClose">&times;</span>
-  <div id="lightboxContent"></div>
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fechar">&times;</button>
+  <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Foto anterior">&#8249;</button>
+  <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Próxima foto">&#8250;</button>
+  <div class="lightbox-stage" id="lightboxStage">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
 </div>
 
 <section class="cta-produtos">
@@ -325,7 +339,7 @@
       </div>
       <div class="footer-col">
         <h3>Horário</h3>
-        <p>Seg a Sáb — horário sob consulta</p>
+        <p>Seg a Sáb, 08h às 20h</p>
         <p>Fechado aos domingos</p>
       </div>
     </div>
@@ -344,7 +358,11 @@
 
 <script src="js/vendor/gsap.min.js"></script>
 <script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/vendor/supabase.min.js"></script>
+<script src="js/supabase-config.js"></script>
 <script src="js/main.js"></script>
 <script src="js/curso.js"></script>
+<script src="js/galeria.js"></script>
+<script src="js/agendamento.js"></script>
 </body>
 </html>

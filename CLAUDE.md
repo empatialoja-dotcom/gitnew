@@ -16,7 +16,7 @@ grande case do negócio.
 - `site/` — o site da Barba Negra (HTML/CSS/JS, imagens, vídeos) — projeto principal em andamento
 - `marketing/` — conteúdo, SEO, campanhas (saída das skills)
 - `saidas/` — análises, emails, documentos pontuais
-- `dados/` — mídia bruta de clientes pra usar nos projetos (fotos, vídeos — ex: `dados/midia-cliente/`); também serve pra arquivos a analisar (CSV, PDF, planilha)
+- `dados/` — mídia bruta de clientes pra usar nos projetos (fotos, vídeos) e arquivos a analisar (CSV, PDF, planilha)
 - `scripts/` — utilitários (gerar imagem, postar, render)
 
 ## Quem sou
