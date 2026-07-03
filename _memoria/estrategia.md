@@ -16,6 +16,12 @@ produtos + curso, com a seção do curso reformulada como experiência
 interativa de vendas) já está pronto e publicado — falta só a call de
 sexta-feira, 03/07/2026, decidir o fechamento.
 
+O agendamento deixou de ser só um redirecionamento pro WhatsApp: agora
+é um sistema completo (Supabase) com reserva em tempo real, painel
+individual pra cada barbeiro e cancelamento self-service pelo cliente
+— reforça o argumento de venda pra call (visual + funcionalidade acima
+da ferramenta datada que o cliente usa hoje).
+
 ## O que pode esperar
 
 Rotinas internas e automações pra si mesmo — ainda não existem, vão

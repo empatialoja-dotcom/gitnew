@@ -14,6 +14,7 @@ grande case do negócio.
 - `_memoria/` — quem é o Gabriel, como ele fala, o que tá em foco
 - `identidade/` — cores, fontes, logo da Barba Negra
 - `site/` — o site da Barba Negra (HTML/CSS/JS, imagens, vídeos) — projeto principal em andamento
+- `supabase/` — schema do banco de dados e passo a passo de setup do sistema de agendamento (`schema.sql`, `SETUP.md`)
 - `marketing/` — conteúdo, SEO, campanhas (saída das skills)
 - `saidas/` — análises, emails, documentos pontuais
 - `dados/` — mídia bruta de clientes pra usar nos projetos (fotos, vídeos) e arquivos a analisar (CSV, PDF, planilha)
