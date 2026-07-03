@@ -65,38 +65,15 @@ if (!prefersReducedMotion) {
   });
 }
 
-// Catálogo — pra adicionar produto: acrescentar um item aqui.
-// imagem: caminho em img/produtos/. preco: string livre (ex.: "R$ 49,90" ou "Sob consulta").
-const produtos = [
-  {
-    nome: "Minoxidil",
-    imagem: "img/produtos/minoxidil.jpeg",
-    preco: "R$ 40,00",
-    descricao: "Estímulo de crescimento pra barba e cabelo, uso diário.",
-  },
-  {
-    nome: "Creme de Barba",
-    imagem: "img/produtos/creme-de-barba.jpeg",
-    preco: "R$ 30,00",
-    descricao: "Hidratação e maciez pra manter a barba no controle.",
-  },
-  {
-    nome: "Creme de Cabelo",
-    imagem: "img/produtos/creme-de-cabelo.jpeg",
-    preco: "R$ 30,00",
-    descricao: "Cuidado diário pro cabelo depois do corte.",
-  },
-  {
-    nome: "Pomada",
-    imagem: "img/produtos/pomada.jpeg",
-    preco: "R$ 50,00",
-    descricao: "Fixação e acabamento pro penteado do dia a dia.",
-  },
-];
-
+// Catálogo — carregado do Supabase (tabela "produtos"). Cadastro, edição
+// e remoção ficam no painel do barbeiro (dashboard.html, aba Produtos).
 const produtosGrid = document.getElementById("produtosGrid");
 
-produtos.forEach((produto, i) => {
+function formatarPreco(preco) {
+  return Number(preco).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+function criarCardProduto(produto, i) {
   const card = document.createElement("article");
   card.className = "produto-card reveal";
   card.dataset.reveal = "";
@@ -104,19 +81,49 @@ produtos.forEach((produto, i) => {
 
   card.innerHTML = `
     <div class="produto-media">
-      <img src="${produto.imagem}" alt="${produto.nome} — Barba Negra" loading="lazy" />
+      <img src="${produto.imagem_url || ""}" alt="${produto.nome} — Barba Negra" loading="lazy" />
     </div>
     <div class="produto-info">
       <h3>${produto.nome}</h3>
-      <span class="produto-preco">${produto.preco}</span>
-      <p>${produto.descricao}</p>
+      <span class="produto-preco">${formatarPreco(produto.preco)}</span>
+      <p>${produto.descricao || ""}</p>
       <button type="button" class="btn btn-outline whats-produto" data-produto="${produto.nome}">Quero este produto</button>
     </div>
   `;
 
-  produtosGrid.appendChild(card);
-  observarReveal(card);
-});
+  return card;
+}
+
+async function carregarProdutos() {
+  if (!window.sbClient) {
+    produtosGrid.innerHTML = `<div class="galeria-vazia">Loja indisponível no momento.</div>`;
+    return;
+  }
+
+  const { data, error } = await window.sbClient
+    .from("produtos")
+    .select("*")
+    .eq("status", "disponivel")
+    .order("created_at", { ascending: true });
+
+  if (error) {
+    produtosGrid.innerHTML = `<div class="galeria-vazia">Não deu pra carregar os produtos agora. Tenta de novo mais tarde.</div>`;
+    return;
+  }
+  if (!data || data.length === 0) {
+    produtosGrid.innerHTML = `<div class="galeria-vazia">Nenhum produto disponível no momento.</div>`;
+    return;
+  }
+
+  produtosGrid.innerHTML = "";
+  data.forEach((produto, i) => {
+    const card = criarCardProduto(produto, i);
+    produtosGrid.appendChild(card);
+    observarReveal(card);
+  });
+}
+
+carregarProdutos();
 
 // Produtos -> WhatsApp
 produtosGrid.addEventListener("click", (e) => {

@@ -59,6 +59,26 @@ Assim que eu tiver a URL e a anon key, coloco em
 `site/js/supabase-config.js` e o agendamento passa a funcionar de
 verdade em produção.
 
+## 5. Módulo de Produtos (loja)
+
+Habilita a aba **🛍 Produtos** no painel (`/dashboard.html`) — cadastro,
+edição e remoção de produtos sem mexer em código, refletindo direto em
+`produtos.html`.
+
+1. **SQL Editor** → **New query** → cole o conteúdo inteiro de
+   `supabase/produtos.sql` (deste projeto) → **Run**. Não mexe em nada
+   do agendamento, só adiciona a tabela `produtos` e um bucket de
+   imagens novo.
+2. Pronto — não precisa criar usuário novo. Qualquer barbeiro que já
+   loga no painel também gerencia o catálogo (não existe um login
+   separado de "dono da loja" nesse sistema).
+3. Confirme em **Table Editor → produtos** que a tabela foi criada, e
+   em **Storage** que o bucket `produtos-imagens` apareceu.
+4. Opcional: no fim de `supabase/produtos.sql` tem um bloco comentado
+   que já popula os 4 produtos que estavam fixos no site (Minoxidil,
+   Creme de Barba, Creme de Cabelo, Pomada). Descomente e rode se quiser
+   começar com o catálogo atual; senão, cadastre do zero pelo painel.
+
 ## Se precisar mudar depois
 
 - **Horário de funcionamento**: `supabase/schema.sql`, função

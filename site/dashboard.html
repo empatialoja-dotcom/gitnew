@@ -57,6 +57,7 @@
           <button type="button" class="dash-aba is-focus" data-view="hoje">Hoje</button>
           <button type="button" class="dash-aba" data-view="semana">Semana</button>
           <button type="button" class="dash-aba" data-view="bloqueios">Bloqueios</button>
+          <button type="button" class="dash-aba" data-view="produtos">🛍 Produtos</button>
         </div>
         <button type="button" class="btn btn-outline" id="logoutBtn">Sair</button>
       </div>
@@ -91,6 +92,14 @@
         </form>
         <div class="dash-lista" id="listaBloqueios"></div>
       </div>
+
+      <div class="dash-view is-hidden" id="viewProdutos">
+        <div class="dash-produtos-topo">
+          <p class="dash-produtos-legenda">Cadastre, edite ou remova os produtos da loja — a mudança aparece direto em <a href="produtos.html" target="_blank" rel="noopener">produtos.html</a>.</p>
+          <button type="button" class="btn btn-primary" id="novoProdutoBtn">+ Novo Produto</button>
+        </div>
+        <div class="dash-produtos-grid" id="listaProdutos"></div>
+      </div>
     </div>
 
     <div class="dash-editar" id="dashEditar">
@@ -113,6 +122,46 @@
           <button type="button" class="btn btn-outline" id="editFecharBtn">Fechar</button>
           <button type="button" class="btn btn-primary" id="editSalvarBtn">Salvar</button>
         </div>
+      </div>
+    </div>
+
+    <div class="dash-editar" id="dashProdutoModal">
+      <div class="dash-editar-card">
+        <h3 id="produtoModalTitulo">Novo produto</h3>
+        <form id="produtoForm">
+          <div class="field">
+            <label for="produtoImagem">Foto do produto</label>
+            <div class="dash-upload" id="produtoUploadArea">
+              <img id="produtoImagemPreview" alt="" class="is-hidden" />
+              <span id="produtoUploadTexto">Clique pra escolher uma imagem</span>
+            </div>
+            <input type="file" id="produtoImagem" accept="image/*" class="is-hidden" />
+          </div>
+          <div class="field">
+            <label for="produtoNome">Nome</label>
+            <input type="text" id="produtoNome" required placeholder="Ex.: Pomada Efeito Seco" />
+          </div>
+          <div class="field">
+            <label for="produtoPreco">Preço (R$)</label>
+            <input type="number" id="produtoPreco" required min="0" step="0.01" placeholder="0,00" />
+          </div>
+          <div class="field">
+            <label for="produtoDescricao">Descrição</label>
+            <input type="text" id="produtoDescricao" required placeholder="Descrição curta do produto" />
+          </div>
+          <div class="field">
+            <label for="produtoStatus">Status</label>
+            <select id="produtoStatus">
+              <option value="disponivel">Disponível</option>
+              <option value="indisponivel">Indisponível</option>
+            </select>
+          </div>
+          <p class="agenda-erro" id="produtoErro"></p>
+          <div class="dash-editar-acoes">
+            <button type="button" class="btn btn-outline" id="produtoCancelarBtn">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="produtoSalvarBtn">Salvar</button>
+          </div>
+        </form>
       </div>
     </div>
 

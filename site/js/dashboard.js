@@ -145,6 +145,7 @@ document.querySelectorAll("[data-reveal]").forEach((el) => {
     hoje: document.getElementById("viewHoje"),
     semana: document.getElementById("viewSemana"),
     bloqueios: document.getElementById("viewBloqueios"),
+    produtos: document.getElementById("viewProdutos"),
   };
 
   abas.forEach((aba) => {
@@ -157,6 +158,7 @@ document.querySelectorAll("[data-reveal]").forEach((el) => {
       if (aba.dataset.view === "hoje") carregarHoje();
       if (aba.dataset.view === "semana") carregarSemana();
       if (aba.dataset.view === "bloqueios") carregarBloqueios();
+      if (aba.dataset.view === "produtos") carregarProdutos();
     });
   });
 
@@ -439,6 +441,201 @@ document.querySelectorAll("[data-reveal]").forEach((el) => {
     if (!error) {
       bloqueioForm.reset();
       carregarBloqueios();
+    }
+  });
+
+  // ---------- Produtos ----------
+
+  const listaProdutos = document.getElementById("listaProdutos");
+  const novoProdutoBtn = document.getElementById("novoProdutoBtn");
+  const dashProdutoModal = document.getElementById("dashProdutoModal");
+  const produtoModalTitulo = document.getElementById("produtoModalTitulo");
+  const produtoForm = document.getElementById("produtoForm");
+  const produtoImagemInput = document.getElementById("produtoImagem");
+  const produtoUploadArea = document.getElementById("produtoUploadArea");
+  const produtoImagemPreview = document.getElementById("produtoImagemPreview");
+  const produtoUploadTexto = document.getElementById("produtoUploadTexto");
+  const produtoNomeInput = document.getElementById("produtoNome");
+  const produtoPrecoInput = document.getElementById("produtoPreco");
+  const produtoDescricaoInput = document.getElementById("produtoDescricao");
+  const produtoStatusInput = document.getElementById("produtoStatus");
+  const produtoErro = document.getElementById("produtoErro");
+  const produtoCancelarBtn = document.getElementById("produtoCancelarBtn");
+  const produtoSalvarBtn = document.getElementById("produtoSalvarBtn");
+
+  let produtoEmEdicao = null; // { id, imagem_url, ... } | null
+  let produtoArquivoSelecionado = null;
+
+  function formatarPreco(preco) {
+    return Number(preco).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  }
+
+  async function carregarProdutos() {
+    listaProdutos.innerHTML = `<p class="horario-msg">Carregando...</p>`;
+    const { data, error } = await window.sbClient
+      .from("produtos")
+      .select("*")
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      listaProdutos.innerHTML = `<p class="horario-msg">Erro ao carregar os produtos.</p>`;
+      return;
+    }
+    if (!data || data.length === 0) {
+      listaProdutos.innerHTML = `<p class="horario-msg">Nenhum produto cadastrado ainda.</p>`;
+      return;
+    }
+
+    listaProdutos.innerHTML = "";
+    data.forEach((p) => listaProdutos.appendChild(criarCardProduto(p)));
+  }
+
+  function criarCardProduto(p) {
+    const card = document.createElement("article");
+    card.className = "dash-produto-card";
+
+    const media = p.imagem_url
+      ? `<div class="dash-produto-media"><img src="${p.imagem_url}" alt="${p.nome}" /></div>`
+      : `<div class="dash-produto-media is-vazia">Sem foto</div>`;
+    const disponivel = p.status === "disponivel";
+
+    card.innerHTML = `
+      ${media}
+      <div class="dash-produto-info">
+        <strong>${p.nome}</strong>
+        <span class="dash-produto-preco">${formatarPreco(p.preco)}</span>
+        <span class="dash-produto-badge${disponivel ? " is-disponivel" : ""}">${disponivel ? "Disponível" : "Indisponível"}</span>
+        <div class="dash-produto-acoes">
+          <button type="button" class="btn btn-outline" data-acao="editar">Editar</button>
+          <button type="button" class="btn btn-primary" data-acao="excluir">Excluir</button>
+        </div>
+      </div>
+    `;
+    card.querySelector('[data-acao="editar"]').addEventListener("click", () => abrirModalProduto(p));
+    card.querySelector('[data-acao="excluir"]').addEventListener("click", () => excluirProduto(p, card));
+    return card;
+  }
+
+  // Extrai o caminho do objeto dentro do bucket a partir da public URL,
+  // pra remover a imagem do Storage junto quando o produto é excluído.
+  function caminhoDoStorage(url) {
+    const marcador = "/produtos-imagens/";
+    const i = url.indexOf(marcador);
+    return i === -1 ? null : url.slice(i + marcador.length);
+  }
+
+  async function excluirProduto(p, card) {
+    if (!window.confirm(`Excluir o produto "${p.nome}"? Essa ação não pode ser desfeita.`)) return;
+
+    const { error } = await window.sbClient.from("produtos").delete().eq("id", p.id);
+    if (error) return;
+
+    if (p.imagem_url) {
+      const caminho = caminhoDoStorage(p.imagem_url);
+      if (caminho) await window.sbClient.storage.from("produtos-imagens").remove([caminho]);
+    }
+    card.remove();
+  }
+
+  function resetarFormProduto() {
+    produtoForm.reset();
+    produtoArquivoSelecionado = null;
+    produtoImagemPreview.src = "";
+    produtoImagemPreview.classList.add("is-hidden");
+    produtoUploadTexto.classList.remove("is-hidden");
+    produtoErro.textContent = "";
+    produtoErro.classList.remove("is-visible");
+    produtoStatusInput.value = "disponivel";
+  }
+
+  function abrirModalProduto(produto) {
+    resetarFormProduto();
+    produtoEmEdicao = produto || null;
+    produtoModalTitulo.textContent = produto ? "Editar produto" : "Novo produto";
+
+    if (produto) {
+      produtoNomeInput.value = produto.nome;
+      produtoPrecoInput.value = produto.preco;
+      produtoDescricaoInput.value = produto.descricao || "";
+      produtoStatusInput.value = produto.status;
+      if (produto.imagem_url) {
+        produtoImagemPreview.src = produto.imagem_url;
+        produtoImagemPreview.classList.remove("is-hidden");
+        produtoUploadTexto.classList.add("is-hidden");
+      }
+    }
+
+    dashProdutoModal.classList.add("is-visible");
+  }
+
+  function fecharModalProduto() {
+    dashProdutoModal.classList.remove("is-visible");
+    produtoEmEdicao = null;
+  }
+
+  novoProdutoBtn.addEventListener("click", () => abrirModalProduto(null));
+  produtoCancelarBtn.addEventListener("click", fecharModalProduto);
+  produtoUploadArea.addEventListener("click", () => produtoImagemInput.click());
+
+  produtoImagemInput.addEventListener("change", () => {
+    const arquivo = produtoImagemInput.files[0];
+    if (!arquivo) return;
+    produtoArquivoSelecionado = arquivo;
+    const leitor = new FileReader();
+    leitor.onload = () => {
+      produtoImagemPreview.src = leitor.result;
+      produtoImagemPreview.classList.remove("is-hidden");
+      produtoUploadTexto.classList.add("is-hidden");
+    };
+    leitor.readAsDataURL(arquivo);
+  });
+
+  produtoForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    produtoErro.textContent = "";
+    produtoErro.classList.remove("is-visible");
+
+    const nome = produtoNomeInput.value.trim();
+    const preco = Number(produtoPrecoInput.value);
+    const descricao = produtoDescricaoInput.value.trim();
+    const status = produtoStatusInput.value;
+
+    if (!nome || !(preco >= 0) || !descricao) return;
+
+    produtoSalvarBtn.disabled = true;
+    produtoSalvarBtn.textContent = "Salvando...";
+
+    try {
+      let imagemUrl = produtoEmEdicao ? produtoEmEdicao.imagem_url : null;
+
+      if (produtoArquivoSelecionado) {
+        const extensao = produtoArquivoSelecionado.name.split(".").pop();
+        const caminho = `${crypto.randomUUID()}.${extensao}`;
+        const { error: erroUpload } = await window.sbClient.storage
+          .from("produtos-imagens")
+          .upload(caminho, produtoArquivoSelecionado);
+        if (erroUpload) throw erroUpload;
+
+        const { data: pub } = window.sbClient.storage.from("produtos-imagens").getPublicUrl(caminho);
+        imagemUrl = pub.publicUrl;
+      }
+
+      const registro = { nome, preco, descricao, status, imagem_url: imagemUrl };
+
+      const { error } = produtoEmEdicao
+        ? await window.sbClient.from("produtos").update(registro).eq("id", produtoEmEdicao.id)
+        : await window.sbClient.from("produtos").insert(registro);
+
+      if (error) throw error;
+
+      fecharModalProduto();
+      carregarProdutos();
+    } catch (err) {
+      produtoErro.textContent = "Não deu pra salvar agora. Tente de novo.";
+      produtoErro.classList.add("is-visible");
+    } finally {
+      produtoSalvarBtn.disabled = false;
+      produtoSalvarBtn.textContent = "Salvar";
     }
   });
 })();
